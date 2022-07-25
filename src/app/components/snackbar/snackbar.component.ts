@@ -1,4 +1,5 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
+import {SnackbarService} from '../../services/snackbar.service';
 
 @Component({
     selector: 'app-snackbar',
@@ -13,7 +14,9 @@ export class SnackbarComponent {
 
     private interval: number | null = null;
 
-    public constructor(private changeDetectorRef: ChangeDetectorRef) {}
+    public constructor(private changeDetectorRef: ChangeDetectorRef, private snackbarService: SnackbarService) {
+        this.snackbarService.initComponent(this);
+    }
 
     public show(message: string, color?: string): void {
         this.clearIntervalIfExists();
