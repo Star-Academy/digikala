@@ -22,7 +22,7 @@ export class AuthService {
     }
 
     public async isLoggedIn(): Promise<boolean> {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token') || '';
 
         const data = await this.apiService.post<IdObject>(API_USER_AUTH, {token});
         return !!data;
