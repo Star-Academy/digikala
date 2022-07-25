@@ -9,6 +9,7 @@ import {
     SimpleChanges,
     ViewChild,
 } from '@angular/core';
+import {SlideshowComponent} from '../../pages/home/slideshow/slideshow.component';
 
 @Component({
     selector: 'app-alert',
