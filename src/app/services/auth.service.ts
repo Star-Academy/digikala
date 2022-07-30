@@ -4,6 +4,7 @@ import {User} from '../models/user.model';
 import {API_USER_AUTH, API_USER_LOGIN} from '../utils/api.utils';
 import {TokenObject} from '../models/api/token-object.model';
 import {IdObject} from '../models/api/id-object.model';
+import {Router} from '@angular/router';
 
 @Injectable({
     providedIn: 'root',
@@ -12,7 +13,9 @@ export class AuthService {
     public cachedIsLoggedIn: boolean | null = null;
     public cachedUserId: number | null = null;
 
-    public constructor(private apiService: ApiService) {}
+    public constructor(private router: Router, private apiService: ApiService) {
+        this.auth().then();
+    }
 
     private static get token(): string {
         return localStorage.getItem('token') || '';
@@ -29,6 +32,11 @@ export class AuthService {
 
         await this.saveCache(response.token, true, response.id);
         return !!response;
+    }
+
+    public async logout(): Promise<void> {
+        await this.saveCache(null, false, null);
+        await this.router.navigateByUrl('/');
     }
 
     private async auth(): Promise<boolean> {
