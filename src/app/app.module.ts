@@ -10,6 +10,9 @@ import {NotFoundModule} from './pages/not-found/not-found.module';
 import {SnackbarModule} from './components/snackbar/snackbar.module';
 import {AuthModule} from './pages/auth/auth.module';
 import {ProfileModule} from './pages/profile/profile.module';
+import {HeaderModule} from './components/header/header.module';
+import {DividerModule} from './components/divider/divider.module';
+import {FooterModule} from './components/footer/footer.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -22,6 +25,9 @@ import {ProfileModule} from './pages/profile/profile.module';
         SnackbarModule,
         AuthModule,
         ProfileModule,
+        HeaderModule,
+        DividerModule,
+        FooterModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
