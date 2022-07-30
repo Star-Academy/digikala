@@ -13,6 +13,7 @@ import {ProfileModule} from './pages/profile/profile.module';
 import {HeaderModule} from './components/header/header.module';
 import {DividerModule} from './components/divider/divider.module';
 import {FooterModule} from './components/footer/footer.module';
+import {SpinnerModule} from './components/spinner/spinner.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -28,6 +29,7 @@ import {FooterModule} from './components/footer/footer.module';
         HeaderModule,
         DividerModule,
         FooterModule,
+        SpinnerModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

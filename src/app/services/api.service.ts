@@ -4,12 +4,13 @@ import {SnackbarService} from './snackbar.service';
 import {SnackbarTheme} from '../enums/snackbar-theme.enum';
 import {GetRequestOptions, PostRequestOptions, RequestOptions} from '../models/api/request-options.model';
 import {ResponseError} from '../models/api/response-error.model';
+import {SpinnerService} from './spinner.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ApiService {
-    public constructor(private snackbarService: SnackbarService) {}
+    public constructor(private spinnerService: SpinnerService, private snackbarService: SnackbarService) {}
 
     private static generatePostRequestInit(options: PostRequestOptions): RequestInit {
         return {
@@ -29,16 +30,25 @@ export class ApiService {
     }
 
     public async fetchRequest<T>(options: RequestOptions, init?: RequestInit): Promise<T | null> {
-        const {url, showError = true} = options;
+        const id = this.spinnerService.show();
 
-        const response = await fetch(url, init);
-        const data = await response.json();
+        try {
+            const {url, showError = true} = options;
 
-        if (response.ok) return data as T;
+            const response = await fetch(url, init);
+            const data = await response.json();
 
-        if (showError)
-            this.snackbarService.show({message: (data as ResponseError).message, theme: SnackbarTheme.DANGER});
+            if (response.ok) return data as T;
 
-        return null;
+            if (showError)
+                this.snackbarService.show({
+                    message: (data as ResponseError).message,
+                    theme: SnackbarTheme.DANGER,
+                });
+
+            return null;
+        } finally {
+            this.spinnerService.hide(id);
+        }
     }
 }
