@@ -1,7 +1,7 @@
 .wrapper {
     --offset: 2rem;
 
-    color: var(--color, var(--color--body-foreground));
+    color: var(--color, var(--color-body-foreground));
 
     position: fixed;
     inset-block-end: var(--offset);
@@ -15,7 +15,7 @@
 
     padding: 1rem;
 
-    border: 0.1rem solid currentColor;
+    border: 0.1rem solid currentcolor;
     border-inline-start-width: 0.3rem;
 
     button {

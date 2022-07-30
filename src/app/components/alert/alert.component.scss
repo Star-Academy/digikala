@@ -5,7 +5,7 @@
     min-width: 60rem;
     max-width: 80rem;
 
-    border: 0.2rem solid var(--color--primary);
+    border: 0.2rem solid var(--color-primary);
 
     header {
         display: flex;
@@ -15,7 +15,7 @@
         padding: 1rem;
 
         .icon {
-            color: var(--color--primary);
+            color: var(--color-primary);
 
             position: relative;
             isolation: isolate;
@@ -29,7 +29,7 @@
             &::before {
                 content: '';
 
-                background-color: var(--color--primary-opposite);
+                background-color: var(--color-primary-opposite);
 
                 position: absolute;
                 inset: 0;
@@ -47,8 +47,8 @@
         }
 
         &.primary {
-            background-color: var(--color--primary);
-            color: var(--color--primary-opposite);
+            background-color: var(--color-primary);
+            color: var(--color-primary-opposite);
         }
     }
 
@@ -70,8 +70,8 @@
 
         button {
             &.confirm {
-                background-color: var(--color--success);
-                color: var(--color--success-opposite);
+                background-color: var(--color-success);
+                color: var(--color-success-opposite);
             }
         }
     }
