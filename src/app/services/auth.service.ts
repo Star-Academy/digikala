@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from './api.service';
 import {User} from '../models/user.model';
-import {API_USER_AUTH, API_USER_LOGIN} from '../utils/api.utils';
+import {API_USER_AUTH, API_USER_LOGIN, API_USER_ONE} from '../utils/api.utils';
 import {TokenObject} from '../models/api/token-object.model';
 import {IdObject} from '../models/api/id-object.model';
 import {Router} from '@angular/router';
+import {UserLoginData} from '../models/api/user-login-data.model';
 
 @Injectable({
     providedIn: 'root',
@@ -12,6 +13,7 @@ import {Router} from '@angular/router';
 export class AuthService {
     public cachedIsLoggedIn: boolean | null = null;
     public cachedUserId: number | null = null;
+    public cachedUser: User | null = null;
 
     public constructor(private router: Router, private apiService: ApiService) {
         this.auth().then();
@@ -26,12 +28,17 @@ export class AuthService {
         return await this.auth();
     }
 
-    public async login(user: User): Promise<boolean> {
+    public async login(user: UserLoginData): Promise<boolean> {
         const response = await this.apiService.postRequest<TokenObject>({url: API_USER_LOGIN, body: user});
         if (!response) return false;
 
         await this.saveCache(response.token, true, response.id);
         return !!response;
+    }
+
+    public async fetchLoggedInUserInfo(): Promise<User | null> {
+        const response = await this.apiService.getRequest<{user: User}>({url: `${API_USER_ONE}/${this.cachedUserId}`});
+        return response?.user || null;
     }
 
     public async logout(): Promise<void> {
@@ -56,5 +63,8 @@ export class AuthService {
 
         this.cachedIsLoggedIn = isLoggedIn;
         this.cachedUserId = userId;
+
+        if (this.cachedUserId) this.cachedUser = await this.fetchLoggedInUserInfo();
+        else this.cachedUser = null;
     }
 }

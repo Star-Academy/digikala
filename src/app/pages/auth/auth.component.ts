@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {User} from '../../models/user.model';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
+import {UserLoginData} from '../../models/api/user-login-data.model';
 
 @Component({
     selector: 'app-auth',
@@ -10,9 +10,8 @@ import {Router} from '@angular/router';
 })
 export class AuthComponent {
     public isInLoginView: boolean = true;
-    public user: User = {
+    public user: UserLoginData = {
         username: '',
-        email: '',
         password: '',
     };
 

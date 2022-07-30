@@ -9,11 +9,6 @@
             <input type="text" name="username" [(ngModel)]="user.username" />
         </label>
 
-        <label *ngIf="!isInLoginView">
-            ایمیل:
-            <input type="email" name="email" [(ngModel)]="user.email" />
-        </label>
-
         <label>
             کلمه عبور:
             <input type="password" name="password" [(ngModel)]="user.password" />
