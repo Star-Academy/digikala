@@ -3,6 +3,7 @@
     --color-gray-95: hsl(0deg 0% 95%);
     --color-gray-92: hsl(0deg 0% 92%);
     --color-gray-90: hsl(0deg 0% 90%);
+    --color-gray-85: hsl(0deg 0% 85%);
     --color-gray-80: hsl(0deg 0% 80%);
     --color-gray-70: hsl(0deg 0% 70%);
     --color-gray-50: hsl(0deg 0% 50%);
@@ -31,6 +32,8 @@
     --color-danger-darker: hsl(0deg 100% 50%);
     --color-danger-opposite: var(--color-gray-98);
 
+    --color-link: var(--color-info);
+
     --color-fade: var(--color-gray-50);
     --color-fader: var(--color-gray-70);
 
@@ -40,11 +43,17 @@
     --color-body-background: var(--color-default-background);
     --color-body-foreground: var(--color-default-foreground);
 
+    --color-spinner-background: hsl(0deg 0% 98% / 80%);
+    --color-spinner-foreground: var(--color-primary);
+
     --color-box-shadow-subtle: hsl(0deg 90% 10% / 12%);
     --box-shadow-subtle: 0 0.2rem 1rem 0 var(--color-box-shadow-subtle);
 
     --minimum-inline-padding: 4rem;
 
+    --padding-form-element: 1rem 2rem;
+
+    --border: 0.1rem solid var(--color-gray-85);
     --border-radius: 0.5rem;
 
     --animation-duration-fast: 0.2s;
@@ -128,11 +137,16 @@ a {
     display: block;
 
     text-decoration: none;
+
+    &.colorful {
+        color: var(--color-link);
+    }
 }
 
 button,
 .button {
     background-color: transparent;
+    color: inherit;
 
     border: none;
 
@@ -142,7 +156,7 @@ button,
 
     cursor: pointer;
 
-    &:not(.reset) {
+    &:not(.reset, .link) {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -150,16 +164,19 @@ button,
 
         width: fit-content;
 
-        padding: 1rem;
+        padding: var(--padding-form-element);
 
         border-radius: var(--border-radius);
 
         text-align: center;
-        line-height: 1;
 
         &:hover {
             background-color: var(--color-gray-95);
         }
+    }
+
+    &.link {
+        color: var(--color-link);
     }
 
     &.primary {
@@ -212,6 +229,23 @@ svg {
 
         &:focus {
             outline: none;
+        }
+    }
+}
+
+form {
+    label {
+        input {
+            background-color: transparent;
+
+            padding: var(--padding-form-element);
+
+            border: var(--border);
+            border-radius: var(--border-radius);
+
+            &:focus {
+                outline: none;
+            }
         }
     }
 }

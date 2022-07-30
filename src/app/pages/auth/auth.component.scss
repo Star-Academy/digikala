@@ -2,33 +2,48 @@
     display: grid;
     place-items: center;
 
-    min-height: 100vh;
+    padding-block: 4rem;
 
-    form {
-        box-shadow: var(--box-shadow-subtle);
+    [data-flip-id] {
+        transform-origin: top;
+    }
+
+    .box {
+        position: relative;
+        isolation: isolate;
 
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 3rem;
 
-        min-inline-size: 20rem;
+        min-inline-size: 50rem;
         inline-size: 100%;
-        max-inline-size: 40rem;
+        max-inline-size: fit-content;
 
         margin: auto;
+        padding: 4rem;
 
-        padding: 2rem;
+        .background {
+            background-color: var(--color-body-background);
 
-        label {
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+
+            border: var(--border);
+            border-radius: var(--border-radius);
         }
 
-        button {
-            width: 100%;
+        .logo {
+            align-self: center;
+        }
 
-            margin-block-start: 2rem;
+        p {
+            font-size: 1.4rem;
+
+            a {
+                display: inline-block;
+            }
         }
     }
 }

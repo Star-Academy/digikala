@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from './api.service';
 import {User} from '../models/user.model';
-import {API_USER_AUTH, API_USER_LOGIN, API_USER_ONE} from '../utils/api.utils';
+import {API_USER_AUTH, API_USER_LOGIN, API_USER_ONE, API_USER_REGISTER} from '../utils/api.utils';
 import {TokenObject} from '../models/api/token-object.model';
 import {IdObject} from '../models/api/id-object.model';
 import {Router} from '@angular/router';
 import {UserLoginData} from '../models/api/user-login-data.model';
+import {UserRegisterData} from '../models/api/user-register-data.model';
 
 @Injectable({
     providedIn: 'root',
@@ -34,6 +35,14 @@ export class AuthService {
 
         await this.saveCache(response.token, true, response.id);
         return !!response;
+    }
+
+    public async register(user: UserRegisterData): Promise<boolean> {
+        const response = await this.apiService.postRequest<TokenObject>({url: API_USER_REGISTER, body: user});
+        if (!response) return false;
+
+        await this.saveCache(response.token, true, response.id);
+        return true;
     }
 
     public async fetchLoggedInUserInfo(): Promise<User | null> {
