@@ -1,12 +1,32 @@
 import {TestBed} from '@angular/core/testing';
-import {RouterTestingModule} from '@angular/router/testing';
 import {AppComponent} from './app.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppRoutingModule} from './app-routing.module';
+import {AuthModule} from './pages/auth/auth.module';
+import {HomeModule} from './pages/home/home.module';
+import {NotFoundModule} from './pages/not-found/not-found.module';
+import {ProfileModule} from './pages/profile/profile.module';
+import {SnackbarModule} from './components/snackbar/snackbar.module';
+import {HeaderModule} from './components/header/header.module';
+import {FooterModule} from './components/footer/footer.module';
+import {DividerModule} from './components/divider/divider.module';
 
 describe('AppComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [RouterTestingModule],
             declarations: [AppComponent],
+            imports: [
+                BrowserModule,
+                AppRoutingModule,
+                AuthModule,
+                HomeModule,
+                NotFoundModule,
+                ProfileModule,
+                SnackbarModule,
+                HeaderModule,
+                FooterModule,
+                DividerModule,
+            ],
         }).compileComponents();
     });
 
@@ -14,18 +34,5 @@ describe('AppComponent', () => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.componentInstance;
         expect(app).toBeTruthy();
-    });
-
-    it(`should have as title 'digikala'`, () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        const app = fixture.componentInstance;
-        expect(app.title).toEqual('digikala');
-    });
-
-    it('should render title', () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        fixture.detectChanges();
-        const compiled = fixture.nativeElement as HTMLElement;
-        expect(compiled.querySelector('.content span')?.textContent).toContain('digikala app is running!');
     });
 });
