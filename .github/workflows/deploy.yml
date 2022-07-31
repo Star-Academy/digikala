@@ -51,6 +51,7 @@ jobs:
               run: npm run build:prod
 
             - name: 404.html Hack
+              if: success()
               run: cp dist/digikala/index.html dist/digikala/404.html
 
             - name: Upload Build
