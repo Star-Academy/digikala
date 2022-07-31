@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {DEFAULT_POST_REQUEST_INIT} from '../utils/api.utils';
 import {SnackbarService} from './snackbar.service';
 import {SnackbarTheme} from '../enums/snackbar-theme.enum';
-import {GetRequestOptions, PostRequestOptions, RequestOptions} from '../models/api/request-options.model';
 import {ResponseError} from '../models/api/response-error.model';
+import {GetRequestOptions, PostRequestOptions, RequestOptions} from '../models/api/request-options.model';
 import {SpinnerService} from './spinner.service';
 
 @Injectable({
@@ -26,13 +26,11 @@ export class ApiService {
 
     public async postRequest<T>(options: PostRequestOptions): Promise<T | null> {
         const init = ApiService.generatePostRequestInit(options);
-        return await this.fetchRequest(options, init);
+        return await this.fetchRequest<T>(options, init);
     }
 
-    public async fetchRequest<T>(options: RequestOptions, init?: RequestInit): Promise<T | null> {
-        const id = this.spinnerService.show();
-
-        try {
+    private async fetchRequest<T>(options: RequestOptions, init?: RequestInit): Promise<T | null> {
+        return this.spinnerService.wrapAsync(async () => {
             const {url, showError = true} = options;
 
             const response = await fetch(url, init);
@@ -47,8 +45,6 @@ export class ApiService {
                 });
 
             return null;
-        } finally {
-            this.spinnerService.hide(id);
-        }
+        });
     }
 }

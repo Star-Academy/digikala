@@ -10,6 +10,7 @@ import {SnackbarModule} from './components/snackbar/snackbar.module';
 import {HeaderModule} from './components/header/header.module';
 import {FooterModule} from './components/footer/footer.module';
 import {DividerModule} from './components/divider/divider.module';
+import {SpinnerModule} from './components/spinner/spinner.module';
 
 describe('AppComponent', () => {
     beforeEach(async () => {
@@ -26,6 +27,7 @@ describe('AppComponent', () => {
                 HeaderModule,
                 FooterModule,
                 DividerModule,
+                SpinnerModule,
             ],
         }).compileComponents();
     });

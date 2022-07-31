@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
-import {ApiService} from './api.service';
-import {User} from '../models/user.model';
 import {API_USER_AUTH, API_USER_LOGIN, API_USER_ONE, API_USER_REGISTER} from '../utils/api.utils';
+import {ApiService} from './api.service';
 import {TokenObject} from '../models/api/token-object.model';
-import {IdObject} from '../models/api/id-object.model';
+import {User} from '../models/user.model';
 import {Router} from '@angular/router';
 import {UserLoginData} from '../models/api/user-login-data.model';
 import {UserRegisterData} from '../models/api/user-register-data.model';
@@ -20,7 +19,7 @@ export class AuthService {
         this.auth().then();
     }
 
-    private static get token(): string {
+    public get token(): string {
         return localStorage.getItem('token') || '';
     }
 
@@ -33,15 +32,15 @@ export class AuthService {
         const response = await this.apiService.postRequest<TokenObject>({url: API_USER_LOGIN, body: user});
         if (!response) return false;
 
-        await this.saveCache(response.token, true, response.id);
-        return !!response;
+        await this.saveCache(response.token, true, response.id ?? null);
+        return true;
     }
 
     public async register(user: UserRegisterData): Promise<boolean> {
         const response = await this.apiService.postRequest<TokenObject>({url: API_USER_REGISTER, body: user});
         if (!response) return false;
 
-        await this.saveCache(response.token, true, response.id);
+        await this.saveCache(response.token, true, response.id ?? null);
         return true;
     }
 
@@ -56,14 +55,14 @@ export class AuthService {
     }
 
     private async auth(): Promise<boolean> {
-        const response = await this.apiService.postRequest<IdObject>({
+        const response = await this.apiService.postRequest<TokenObject>({
             url: API_USER_AUTH,
-            body: {token: AuthService.token},
+            body: {token: this.token},
             showError: false,
         });
 
-        await this.saveCache(AuthService.token, !!response, response?.id ?? null);
-        return !!response;
+        await this.saveCache(this.token, !!response, response?.id ?? null);
+        return !!this.cachedIsLoggedIn;
     }
 
     private async saveCache(token: string | null, isLoggedIn: boolean, userId: number | null): Promise<void> {
@@ -74,6 +73,5 @@ export class AuthService {
         this.cachedUserId = userId;
 
         if (this.cachedUserId) this.cachedUser = await this.fetchLoggedInUserInfo();
-        else this.cachedUser = null;
     }
 }
