@@ -1,4 +1,7 @@
 .filters {
+    display: flex;
+    flex-direction: column;
+
     padding: 2rem;
 
     border: var(--border);
@@ -7,5 +10,9 @@
     .title {
         font-size: 1.8rem;
         font-weight: 700;
+    }
+
+    button {
+        width: 100%;
     }
 }
