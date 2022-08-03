@@ -6,7 +6,9 @@
             <img src="assets/logos/digikala-en.svg" alt="" />
         </a>
 
-        <app-search-box></app-search-box>
+        <form (submit)="searchSubmitHandler()">
+            <app-search-box [(searchPhrase)]="gameService.searchPhrase"></app-search-box>
+        </form>
 
         <div class="buttons">
             <ng-container *ngIf="authService.cachedIsLoggedIn; else notLoggedInTemplate">
