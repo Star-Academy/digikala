@@ -13,17 +13,20 @@
                 <div class="title">مرتب‌سازی:</div>
 
                 <ul>
-                    <li>
-                        <button class="reset" (click)="sortingClickHandler()">پرفروش‌ترین</button>
+                    <li [class.active]="gameService.sort === Sort.TOP_SELLER">
+                        <button class="reset" (click)="sortingClickHandler(Sort.TOP_SELLER)">پرفروش‌ترین</button>
                     </li>
-                    <li>
-                        <button class="reset" (click)="sortingClickHandler()">محبوب‌ترین</button>
+                    <li [class.active]="gameService.sort === Sort.MOST_POPULAR">
+                        <button class="reset" (click)="sortingClickHandler(Sort.MOST_POPULAR)">محبوب‌ترین</button>
                     </li>
-                    <li class="active">
-                        <button class="reset" (click)="sortingClickHandler()">مرتبط‌ترین</button>
+                    <li [class.active]="gameService.sort === Sort.MOST_RELEVANT">
+                        <button class="reset" (click)="sortingClickHandler(Sort.MOST_RELEVANT)">مرتبط‌ترین</button>
                     </li>
-                    <li>
-                        <button class="reset" (click)="sortingClickHandler()">جدیدترین</button>
+                    <li [class.active]="gameService.sort === Sort.NEWEST">
+                        <button class="reset" (click)="sortingClickHandler(Sort.NEWEST)">جدیدترین</button>
+                    </li>
+                    <li [class.active]="gameService.sort === Sort.OLDEST">
+                        <button class="reset" (click)="sortingClickHandler(Sort.OLDEST)">قدیمی‌ترین</button>
                     </li>
                 </ul>
             </div>

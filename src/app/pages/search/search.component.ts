@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Breadcrumb} from '../../components/breadcrumbs/models/breadcrumb.model';
 import {GameService} from '../../services/game.service';
+import {Sort} from '../../enums/sort.enum';
 
 @Component({
     selector: 'app-search',
@@ -8,6 +9,8 @@ import {GameService} from '../../services/game.service';
     styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent {
+    public Sort = Sort;
+
     public breadcrumbs: Breadcrumb[] = [
         {title: 'فروشگاه اینترنتی دیجی‌کالا', url: '/'},
         {title: 'خانه و آشپزخانه', url: '#'},
@@ -17,5 +20,8 @@ export class SearchComponent {
 
     public constructor(public gameService: GameService) {}
 
-    public sortingClickHandler(): void {}
+    public async sortingClickHandler(sort: Sort): Promise<void> {
+        this.gameService.sort = sort;
+        await this.gameService.search();
+    }
 }
