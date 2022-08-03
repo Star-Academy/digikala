@@ -4,7 +4,8 @@
     display: grid;
     grid-template-areas:
         "breadcrumbs breadcrumbs"
-        "aside main";
+        "aside main"
+        ". footer";
     grid-template-columns: 30rem 1fr;
     align-items: start;
     gap: var(--spacing);
@@ -66,5 +67,13 @@
                 margin-inline-start: auto;
             }
         }
+    }
+
+    footer {
+        grid-area: footer;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 }

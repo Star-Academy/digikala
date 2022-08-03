@@ -38,6 +38,9 @@
     --color-fade: var(--color-gray-50);
     --color-fader: var(--color-gray-70);
 
+    --color-button-disabled-background: var(--color-gray-70);
+    --color-button-disabled-foreground: var(--color--default-foreground);
+
     --color-default-background: var(--color-gray-98);
     --color-default-foreground: var(--color-gray-10);
 
@@ -172,23 +175,34 @@ button,
         border-radius: var(--border-radius);
 
         text-align: center;
+    }
 
-        &:hover {
-            background-color: var(--color-gray-95);
+    &:not([disabled]) {
+        &:not(.reset, .link) {
+            &:hover {
+                background-color: var(--color-gray-95);
+            }
+        }
+
+        &.link {
+            color: var(--color-link);
+        }
+
+        &.primary {
+            background-color: var(--color-primary);
+            color: var(--color-primary-opposite);
+
+            &:hover {
+                background-color: var(--color-primary-darker);
+            }
         }
     }
 
-    &.link {
-        color: var(--color-link);
-    }
+    &[disabled] {
+        background-color: var(--color-button-disabled-background);
+        color: var(--color-button-disabled-foreground);
 
-    &.primary {
-        background-color: var(--color-primary);
-        color: var(--color-primary-opposite);
-
-        &:hover {
-            background-color: var(--color-primary-darker);
-        }
+        cursor: not-allowed;
     }
 }
 

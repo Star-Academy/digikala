@@ -11,6 +11,6 @@ export class HeaderComponent {
     public constructor(public authService: AuthService, public gameService: GameService) {}
 
     public async searchSubmitHandler(): Promise<void> {
-        await this.gameService.search();
+        await this.gameService.navigate();
     }
 }

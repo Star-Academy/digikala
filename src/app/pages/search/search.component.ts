@@ -21,7 +21,14 @@ export class SearchComponent {
     public constructor(public gameService: GameService) {}
 
     public async sortingClickHandler(sort: Sort): Promise<void> {
-        this.gameService.sort = sort;
-        await this.gameService.search();
+        await this.gameService.changeSort(sort);
+    }
+
+    public async previousPageButtonClickHandler(): Promise<void> {
+        await this.gameService.changePage(-1);
+    }
+
+    public async nextPageButtonClickHandler(): Promise<void> {
+        await this.gameService.changePage(1);
     }
 }

@@ -20,12 +20,20 @@ export class GameService {
         this.initializeObservers();
     }
 
-    public async search(): Promise<void> {
-        if (!this.router.routerState.snapshot.url.startsWith('/search')) {
-            await this.router.navigateByUrl('/search');
-            return;
-        }
+    public async changeSort(sort: Sort): Promise<void> {
+        this.offset = 0;
+        this.sort = sort;
+        await this.search();
+    }
 
+    public async changePage(multiplier: number): Promise<void> {
+        this.offset += multiplier * this.PAGE_SIZE;
+        if (this.offset < 0) this.offset = 0;
+
+        await this.search();
+    }
+
+    public async search(): Promise<void> {
         const response = await this.apiService.postRequest<{games: Game[]}>({
             url: API_GAME_SEARCH,
             body: {searchPhrase: this.searchPhrase, pageSize: this.PAGE_SIZE, offset: this.offset, sort: this.sort},
@@ -34,6 +42,17 @@ export class GameService {
         this.games = response && Array.isArray(response?.games) ? response.games : [];
 
         console.log(this.games);
+    }
+
+    public async navigate(): Promise<void> {
+        this.offset = 0;
+
+        if (!this.router.routerState.snapshot.url.startsWith('/search')) {
+            await this.router.navigateByUrl('/search');
+            return;
+        }
+
+        await this.search();
     }
 
     private initializeObservers(): void {
