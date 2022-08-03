@@ -13,6 +13,7 @@ import {HeaderModule} from './components/header/header.module';
 import {FooterModule} from './components/footer/footer.module';
 import {DividerModule} from './components/divider/divider.module';
 import {SpinnerModule} from './components/spinner/spinner.module';
+import {SearchModule} from './pages/search/search.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -28,6 +29,7 @@ import {SpinnerModule} from './components/spinner/spinner.module';
         FooterModule,
         DividerModule,
         SpinnerModule,
+        SearchModule,
     ],
     bootstrap: [AppComponent],
 })
