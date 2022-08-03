@@ -8,9 +8,10 @@ import {SwitchComponent} from './components/switch/switch.component';
 import {FormsModule} from '@angular/forms';
 import {ExpansionListComponent} from './components/expansion-list/expansion-list.component';
 import {SearchBoxModule} from '../../components/search-box/search-box.module';
+import {FilterPipeModule} from '../../pipes/filter-pipe/filter-pipe.module';
 
 @NgModule({
     declarations: [SearchComponent, FiltersComponent, GamesComponent, SwitchComponent, ExpansionListComponent],
-    imports: [CommonModule, BreadcrumbsModule, FormsModule, SearchBoxModule],
+    imports: [CommonModule, BreadcrumbsModule, FormsModule, SearchBoxModule, FilterPipeModule],
 })
 export class SearchModule {}

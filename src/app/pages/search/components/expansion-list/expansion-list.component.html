@@ -9,7 +9,7 @@
         <app-search-box [(searchPhrase)]="searchPhrase"></app-search-box>
 
         <ul>
-            <li *ngFor="let item of items">
+            <li *ngFor="let item of items | filter: searchPhrase">
                 <label>
                     <input type="checkbox" [(ngModel)]="item.isEnabled" (ngModelChange)="itemsChange.emit(items)" />
                     {{ item.title }}
