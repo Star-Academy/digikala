@@ -12,6 +12,6 @@ export class ExpansionListComponent {
 
     @Output() public itemsChange = new EventEmitter<ExpansionListItem[]>();
 
-    public isExpanded: boolean = true;
+    public isExpanded: boolean = false;
     public searchPhrase: string = '';
 }
