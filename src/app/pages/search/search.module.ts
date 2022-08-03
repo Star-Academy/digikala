@@ -9,9 +9,11 @@ import {FormsModule} from '@angular/forms';
 import {ExpansionListComponent} from './components/expansion-list/expansion-list.component';
 import {SearchBoxModule} from '../../components/search-box/search-box.module';
 import {FilterPipeModule} from '../../pipes/filter-pipe/filter-pipe.module';
+import {RouterModule} from '@angular/router';
+import { IncludesPipe } from './pipes/includes.pipe';
 
 @NgModule({
-    declarations: [SearchComponent, FiltersComponent, GamesComponent, SwitchComponent, ExpansionListComponent],
-    imports: [CommonModule, BreadcrumbsModule, FormsModule, SearchBoxModule, FilterPipeModule],
+    declarations: [SearchComponent, FiltersComponent, GamesComponent, SwitchComponent, ExpansionListComponent, IncludesPipe],
+    imports: [CommonModule, BreadcrumbsModule, FormsModule, SearchBoxModule, FilterPipeModule, RouterModule],
 })
 export class SearchModule {}

@@ -1,5 +1,63 @@
-.games {
-    background-image: linear-gradient(to bottom, var(--color-gray-80), var(--color-gray-50));
+ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
 
-    min-block-size: 200rem;
+    li {
+        a {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            block-size: 100%;
+
+            padding: 2rem;
+
+            .status,
+            .platforms {
+                font-size: 1.2rem;
+            }
+
+            img {
+                block-size: 32rem;
+                inline-size: auto;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            .title {
+                overflow: hidden;
+
+                font-weight: 700;
+
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .status {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                margin-block-end: auto;
+
+                .rating {
+                    margin-inline-start: auto;
+
+                    i {
+                        color: var(--color-star);
+                    }
+                }
+            }
+
+            .platforms {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            &:hover {
+                box-shadow: var(--box-shadow-less-subtle);
+            }
+        }
+    }
 }

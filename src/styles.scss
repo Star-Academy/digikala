@@ -33,6 +33,7 @@
     --color-danger-opposite: var(--color-gray-98);
 
     --color-link: var(--color-info);
+    --color-star: hsl(40deg 100% 50%);
 
     --color-fade: var(--color-gray-50);
     --color-fader: var(--color-gray-70);
@@ -48,6 +49,8 @@
 
     --color-box-shadow-subtle: hsl(0deg 90% 10% / 12%);
     --box-shadow-subtle: 0 0.2rem 1rem 0 var(--color-box-shadow-subtle);
+    --color-box-shadow-less-subtle: hsl(0deg 90% 10% / 30%);
+    --box-shadow-less-subtle: 0 0.2rem 1rem 0 var(--color-box-shadow-less-subtle);
 
     --minimum-inline-padding: 4rem;
 

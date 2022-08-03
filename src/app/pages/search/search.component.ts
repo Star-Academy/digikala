@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Breadcrumb} from '../../components/breadcrumbs/models/breadcrumb.model';
+import {GameService} from '../../services/game.service';
 
 @Component({
     selector: 'app-search',
@@ -13,6 +14,8 @@ export class SearchComponent {
         {title: 'صوتی و تصویری', url: '#'},
         {title: 'کنسول بازی', url: '#'},
     ];
+
+    public constructor(public gameService: GameService) {}
 
     public sortingClickHandler(): void {}
 }
