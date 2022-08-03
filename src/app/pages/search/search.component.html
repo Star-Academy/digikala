@@ -1,3 +1,36 @@
 <div class="content-wrapper">
     <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
+
+    <aside>
+        <app-filters></app-filters>
+    </aside>
+
+    <main>
+        <header>
+            <div class="sorting">
+                <i class="far fa-arrow-down-wide-short"></i>
+
+                <div class="title">مرتب‌سازی:</div>
+
+                <ul>
+                    <li>
+                        <button class="reset" (click)="sortingClickHandler()">پرفروش‌ترین</button>
+                    </li>
+                    <li>
+                        <button class="reset" (click)="sortingClickHandler()">محبوب‌ترین</button>
+                    </li>
+                    <li class="active">
+                        <button class="reset" (click)="sortingClickHandler()">مرتبط‌ترین</button>
+                    </li>
+                    <li>
+                        <button class="reset" (click)="sortingClickHandler()">جدیدترین</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="items-count">3583 کالا</div>
+        </header>
+
+        <app-games></app-games>
+    </main>
 </div>

@@ -1,0 +1,13 @@
+.filters {
+    min-block-size: 50rem;
+
+    padding: 2rem;
+
+    border: var(--border);
+    border-radius: var(--border-radius);
+
+    .title {
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+}

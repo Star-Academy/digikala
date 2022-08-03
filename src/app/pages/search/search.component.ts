@@ -13,4 +13,6 @@ export class SearchComponent {
         {title: 'صوتی و تصویری', url: '#'},
         {title: 'کنسول بازی', url: '#'},
     ];
+
+    public sortingClickHandler(): void {}
 }
