@@ -1,0 +1,66 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        padding-block: 2rem;
+
+        cursor: pointer;
+
+        i {
+            margin-inline-start: auto;
+
+            transform: rotate(0);
+
+            transition: transform var(--animation-duration-fast) ease-in-out;
+
+            &.expanded {
+                transform: rotate(-90deg);
+            }
+        }
+    }
+
+    main {
+        overflow: auto;
+
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        max-height: 36rem;
+
+        padding-inline-end: 2rem;
+
+        scrollbar-gutter: both-edges;
+
+        ul {
+            li {
+                label {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+
+                    cursor: pointer;
+
+                    input {
+                        cursor: pointer;
+                    }
+                }
+
+                &:not(:last-of-type)::after {
+                    content: "";
+
+                    display: block;
+
+                    margin-block: 1rem;
+
+                    border-block-end: var(--border);
+                }
+            }
+        }
+    }
+}
